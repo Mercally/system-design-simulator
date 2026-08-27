@@ -8,6 +8,14 @@ Guidance for AI agents (and humans) working in this repo.
 
 SystemForge — an open-source system-design interview simulator. Drag infrastructure components onto a React Flow canvas, wire them, simulate production-scale traffic (Kahn's topological sort), and get scored across 5 interview dimensions. 100% client-side; state persists to `localStorage`. No backend.
 
+## Active direction
+
+The engine below (single-pass static calc, component behavior hardcoded by ID) is mid-evolution toward a pluggable platform — see `docs/superpowers/specs/2026-08-27-systemforge-platform-feasibility.md`. Phase 1 (in progress, no epics landed yet): data-driven component "behavior archetypes" replacing the load-balancer/api-gateway `Set`, edge-level connection semantics, M/M/c queueing-theory design-error checks. Phase 2 (deferred): discrete-event simulation, cloud backend. Don't treat the current hardcoded-ID design as the target state.
+
+## Agent workflow
+
+Local Claude Code skills, not cloud automation — see `docs/agent-flow.md` for the full table. `/triage` before starting an issue, `/qa` after finishing a change, `/plan` and `/repo-status` on demand. No cron, no GitHub Actions agents; the earlier gh-aw setup was removed.
+
 ## Commands
 
 ```bash
