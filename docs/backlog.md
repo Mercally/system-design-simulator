@@ -17,7 +17,7 @@ Full design: `docs/superpowers/specs/2026-08-27-showcase-view-design.md`. Not pa
 **In scope**
 - `/showcase` gallery route + `/showcase/[slug]` embeddable read-only route (new App Router routes; today the app has only `/`).
 - Static JSON per architecture (`data/showcase/*.json`), authored by Claude for this pass — not drawn by the user yet.
-- New component pool (`data/showcaseComponents.ts`), separate from the interview-prep library (`data/components.ts`): 4 generic archetypes with per-instance label override (`payment-gateway`, `background-job-processor`, `reverse-proxy`, `compute-host`) + 8 cloud-provider-specific specs (`azure-blob-storage`, `azure-key-vault`, `azure-app-service`, `azure-app-registration`, `microsoft-graph`, `gcp-artifact-registry`, `gcp-pubsub`, `gmail-api`).
+- New component pool (`data/showcaseComponents.ts`), separate from the interview-prep library (`data/components.ts`): 3 generic archetypes with per-instance label override (`payment-gateway`, `background-job-processor`, `compute-host`) + 8 cloud-provider-specific specs (`azure-blob-storage`, `azure-key-vault`, `azure-app-service`, `azure-app-registration`, `microsoft-graph`, `gcp-artifact-registry`, `gcp-pubsub`, `gmail-api`) — 11 new specs total. `reverse-proxy` (Traefik) and `sql-db` (external Postgres) reuse existing main-library components via label override; discovered while planning implementation.
 - One small core-engine addition: optional per-instance `description` field on `ComponentNodeData` + Props panel input — a real editor capability any design can use, reused by the showcase click-panel, not a showcase-only fork.
 - `next.config.ts` CSP `frame-ancestors` header scoped to `/showcase/:path*` only, allow-listing the mercally.com domain (placeholder until real hosting/domain is decided — not deployed yet).
 
@@ -28,7 +28,7 @@ Full design: `docs/superpowers/specs/2026-08-27-showcase-view-design.md`. Not pa
 **Tasks**
 1. Add `description?: string` to `ComponentNodeData` (`store/canvasStore.ts`) + wire through node creation/update paths.
 2. Add the description input to the node Props tab (`components/panel/RightPanel.tsx`).
-3. Create `data/showcaseComponents.ts` with the 12 specs (4 generic archetypes + 8 cloud-specific).
+3. Create `data/showcaseComponents.ts` with the 11 specs (3 generic archetypes + 8 cloud-specific).
 4. Build the showcase component-lookup helper (checks `data/components.ts` then `data/showcaseComponents.ts`), mirroring the existing `customComponentsStore` fallback pattern.
 5. Author `data/showcase/dte-masters.json` — model DTE Masters' real infra as nodes/edges, captioned via `label`/`description`.
 6. Create `data/showcase/index.ts` listing showcase entries.
